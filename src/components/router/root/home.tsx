@@ -14,21 +14,20 @@ export default function Home() {
                     className="text-center text-base p-4 font-bold bg-background text-foreground"
                     color={['#be123c', '#db2777']}
                 >
-                    <Link to={links[0].href}>Доступен для предложений</Link>
+                    <Link to={links[0].href}>Available for work</Link>
                 </ShineBorder>
             </div>
 
             <h1 className="text-foreground">
-                Привет! Я{' '}
+                Hello! I&rsquo;m{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-pink-600">
                     FullStack
                 </span>{' '}
-                разработчик, создающий современные веб-приложения.
+                developer, creating modern web-apps.
             </h1>
             <span className="mt-5 text-lg text-muted-foreground max-w-screen-md block mx-auto">
-                На данный момент я проживаю в Иннополисе. В своей работе мне
-                нравится использовать Next.js, React, Tailwind CSS, а так же
-                Python и FastApi.
+                For now I&rsquo;m living in Innopolis, Russia. In my work I like
+                to use Next.js, React, Tailwind CSS, and Python with FastApi.
             </span>
         </div>
     );
