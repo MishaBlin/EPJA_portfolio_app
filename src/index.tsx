@@ -11,7 +11,9 @@ export const mount = (Component, element = document.getElementById('app')) => {
     const rootElement = ReactDOM.createRoot(element);
     rootElement.render(<Component/>);
 
+    // @ts-ignore
     if (module.hot) {
+        // @ts-ignore
         module.hot.accept('./app', () => {
             rootElement.render(<Component/>);
         })
