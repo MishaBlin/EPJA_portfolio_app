@@ -12,8 +12,8 @@ export default [
         ignores: [
             'stubs/**.*',
             'stubs/**/**.*',
-            'bro.config.js',
             'src/index.tsx',
+            '**.config.js'
         ],
     },
     { languageOptions: { globals: globals.browser } },
