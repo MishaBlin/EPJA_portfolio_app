@@ -12,6 +12,11 @@
     "lint:fix": "eslint --fix .",
     "prepare": "husky"
   },
+  "lint-staged": {
+    "**/*.{html,js,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "description": "",
@@ -32,6 +37,7 @@
     "eslint-plugin-react": "^7.37.0",
     "globals": "^15.9.0",
     "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
     "typescript-eslint": "^8.7.0"
   }
