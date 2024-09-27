@@ -61,7 +61,9 @@ export default function About() {
                                     className="flex gap-x-3 items-center"
                                 >
                                     {link.icon}
-                                    <Link to={link.href}>{link.title}</Link>
+                                    <Link to={link.href} target="_blank">
+                                        {link.title}
+                                    </Link>
                                 </div>
                             ))}
                         </CardContent>
