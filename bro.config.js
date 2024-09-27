@@ -1,4 +1,5 @@
 const pkg = require('./package');
+const { resolve } = require('node:path');
 
 module.exports = {
     apiPath: 'stubs/api',
