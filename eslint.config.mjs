@@ -14,6 +14,7 @@ export default [
             'stubs/**/**.*',
             'src/index.tsx',
             '**.config.js',
+            'src/components/ui/**.tsx'
         ],
     },
     { languageOptions: { globals: globals.browser } },
