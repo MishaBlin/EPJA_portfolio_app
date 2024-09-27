@@ -1,18 +1,30 @@
 import React from 'react';
-import { Button } from './components/ui/button';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Root from './components/router/root/page';
+import Layout from './components/router/layout';
+import Auth from './components/router/auth/page';
+import pkg from '../package.json';
+
+const basePath = pkg.name;
+
+const router = createBrowserRouter([
+    {
+        element: <Layout />,
+        children: [
+            {
+                path: `/${basePath}`,
+                element: <Root />,
+            },
+            {
+                path: `/${basePath}/auth`,
+                element: <Auth />,
+            },
+        ],
+    },
+]);
 
 const App = () => {
-    return (
-        <div>
-            <h1 className="text-blue-500">
-                Hello world для проекта - portfolio_app
-            </h1>
-
-            <Button className="rounded" onClick={() => console.log('asdfas')}>
-                А это кнопка
-            </Button>
-        </div>
-    );
+    return <RouterProvider router={router} />;
 };
 
 export default App;
