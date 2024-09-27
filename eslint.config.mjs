@@ -13,7 +13,7 @@ export default [
             'stubs/**.*',
             'stubs/**/**.*',
             'src/index.tsx',
-            '**.config.js'
+            '**.config.js',
         ],
     },
     { languageOptions: { globals: globals.browser } },
