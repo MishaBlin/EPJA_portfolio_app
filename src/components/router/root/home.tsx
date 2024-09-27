@@ -26,8 +26,15 @@ export default function Home() {
                 developer, creating modern web-apps.
             </h1>
             <span className="mt-5 text-lg text-muted-foreground max-w-screen-md block mx-auto">
-                For now I&rsquo;m living in Innopolis, Russia. In my work I like
-                to use Next.js, React, Tailwind CSS, and Python with FastApi.
+                For now I am learning in{' '}
+                <Link to="https://innopolis.university/" target="_blank">
+                    Innopolis University
+                </Link>{' '}
+                at Bachelor 3rd and working as Frontend Developer in{' '}
+                <Link to="https://openai.com/" target="_blank">
+                    Open AI
+                </Link>
+                .
             </span>
         </div>
     );
