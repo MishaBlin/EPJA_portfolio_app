@@ -7,21 +7,26 @@ import pkg from '../package.json';
 
 const basePath = pkg.name;
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+    [
+        {
+            element: <Layout />,
+            children: [
+                {
+                    path: ``,
+                    element: <Root />,
+                },
+                {
+                    path: `/auth`,
+                    element: <Auth />,
+                },
+            ],
+        },
+    ],
     {
-        element: <Layout />,
-        children: [
-            {
-                path: `/${basePath}`,
-                element: <Root />,
-            },
-            {
-                path: `/${basePath}/auth`,
-                element: <Auth />,
-            },
-        ],
+        basename: `/${basePath}`,
     },
-]);
+);
 
 const App = () => {
     return <RouterProvider router={router} />;
