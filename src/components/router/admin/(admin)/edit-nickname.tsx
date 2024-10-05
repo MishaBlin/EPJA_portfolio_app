@@ -1,37 +1,70 @@
-import { Card, CardContent, CardHeader, CardFooter } from '../../../ui/card';
-import { UserRoundPenIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect } from 'react';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '../../../ui/dialog';
+import { Button } from '../../../ui/button';
+import { Input } from '../../../ui/input';
+import { Label } from '../../../ui/label';
 import { useGetApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
-import { Skeleton } from '../../../ui/skeleton';
 
-export default function Nickname({ editButton = null }) {
-    const { data: nickname, isLoading: isNicknameLoading } = useGetApi(
+export default function EditNickname() {
+    const [open, setOpen] = React.useState(false);
+
+    const { data: user, isLoading: isUserLoading } = useGetApi(
         'nickname',
         fetcher,
     );
 
-    if (!nickname || isNicknameLoading) {
-        return <Skeleton className="w-1/2" />;
-    }
+    const [name, setName] = React.useState('');
+    const [colored, setColored] = React.useState('');
+
+    useEffect(() => {
+        if (user) {
+            setName(user.name);
+            setColored(user.colored);
+        }
+    }, [user]);
 
     return (
-        <Card className="w-1/2 rounded-md">
-            <CardHeader className="">
-                <div className="flex gap-x-3 items-center">
-                    <UserRoundPenIcon size={20} /> Nickname
-                </div>
-            </CardHeader>
-            <CardContent className="text-muted-foreground">
-                <Link to="#" className="font-bold text-2xl">
-                    {nickname.name}
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-pink-600">
-                        {nickname.colored}
-                    </span>
-                </Link>
-            </CardContent>
-            {editButton ? <CardFooter>{editButton}</CardFooter> : null}
-        </Card>
+        <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger>
+                <Button disabled={!user || isUserLoading}>Edit</Button>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Edit Nickname</DialogTitle>
+                    <DialogDescription className="pt-4 flex flex-col gap-y-3">
+                        <div className="flex flex-col gap-y-1.5">
+                            <Label>Name</Label>
+                            <Input
+                                value={name}
+                                onChange={(e) => setName(e.currentTarget.value)}
+                            />
+                        </div>
+                        <div className="flex flex-col gap-y-1.5">
+                            <Label>Colored</Label>
+                            <Input
+                                value={colored}
+                                onChange={(e) =>
+                                    setColored(e.currentTarget.value)
+                                }
+                            />
+                        </div>
+                    </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                    <DialogTrigger asChild>
+                        <Button>Submit</Button>
+                    </DialogTrigger>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
     );
 }

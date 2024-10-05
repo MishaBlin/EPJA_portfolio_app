@@ -9,7 +9,8 @@ import EditCity from './edit-city';
 import EditGitHub from './edit-github';
 import EditTechStack from './edit-tech-stack';
 import EditSocials from './edit-socials';
-import Nickname from './edit-nickname';
+import Nickname from './nickname-card';
+import EditNickname from './edit-nickname';
 
 export default function AdminPage() {
     return (
@@ -28,7 +29,7 @@ export default function AdminPage() {
                 {/*Правый блок*/}
                 <div className="w-1/2 flex flex-col gap-y-4">
                     <div className="flex gap-x-4">
-                        <Nickname />
+                        <Nickname editButton={<EditNickname />} />
 
                         {/*Локация*/}
                         <Location editButton={<EditCity />} />
