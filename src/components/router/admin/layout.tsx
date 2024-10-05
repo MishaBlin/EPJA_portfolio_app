@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import Header from '../root/header';
+import AdminHeader from './header';
 
 export default function AdminLayout() {
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function AdminLayout() {
 
     return (
         <div className="container max-w-screen-xl flex flex-col text-white h-full">
-            <Header />
+            <AdminHeader />
             <div className="flex-1">
                 <Outlet />
             </div>

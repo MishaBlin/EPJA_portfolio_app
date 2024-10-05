@@ -17,7 +17,7 @@ export default function AdminHeader() {
                 {!nickname || isNicknameLoading ? (
                     <Skeleton className="w-[100px] h-[30px]" />
                 ) : (
-                    <Link to="/public" className="font-bold text-2xl">
+                    <Link to="/" className="font-bold text-2xl">
                         {nickname.name}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-pink-600">
                             {nickname.colored}
