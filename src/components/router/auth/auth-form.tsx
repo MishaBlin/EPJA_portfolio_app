@@ -81,7 +81,10 @@ export function UserAuthForm({
                             {isLoading ? (
                                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                             ) : (
-                                <Icons.gitHub className="mr-2 h-4 w-4" />
+                                <Icons.gitHub
+                                    className="mr-2 h-4 w-4"
+                                    color="foreground"
+                                />
                             )}{' '}
                             GitHub
                         </Button>
