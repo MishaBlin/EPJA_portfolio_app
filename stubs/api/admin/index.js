@@ -84,8 +84,8 @@ adminRouter.post('/edit/nav-links', verifyToken, (req, res) => {
     if (!navLinks || !Array.isArray(navLinks)) {
         return res.status(400).send({ 'status': 'Failed', 'data': 'Valid navLinks are required' });
     }
-    
-    const isValid = navLinks.every(link => 
+
+    const isValid = navLinks.every(link =>
         link && typeof link === 'object' && 'href' in link && 'title' in link
     );
 
@@ -105,7 +105,7 @@ adminRouter.post('/edit/links', verifyToken, (req, res) => {
         return res.status(400).send({ 'status': 'Failed', 'data': 'Valid links are required' });
     }
 
-    const isValid = links.every(link => 
+    const isValid = links.every(link =>
         link && typeof link === 'object' && 'href' in link && 'title' in link
     );
 
@@ -119,6 +119,38 @@ adminRouter.post('/edit/links', verifyToken, (req, res) => {
     res.status(200).send({ 'status': 'OK', 'data': 'Links updated successfully' });
 });
 
+adminRouter.post('/projects/new', verifyToken, (req, res) => {
+    const { project } = req.body;
+    if (!project) {
+        return res.status(400).send({ 'status': 'Failed', 'data': 'Project is required' });
+    }
 
+    const projectFields = ['id', 'title', 'description', 'link', 'techStack', 'image'];
+
+    const isValid = projectFields.every(field => field && field in project);
+
+    if (!isValid) {
+        return res.status(400).send({ 'status': 'Failed', 'data': 'Project must contain ' + projectFields.join(", ") });
+    }
+
+    data.projects.push(project);
+    saveData(data);
+
+    res.status(200).send({ 'status': 'OK', 'data': 'Project was added successfully' });
+});
+
+adminRouter.delete('/projects/:id', verifyToken, (req, res) => {
+    const { id } = req.params;
+    const project = data.projects.find(p => p.id === id);
+
+    if (project) {
+        data.projects = data.projects.filter(p => p.id !== id);
+        saveData(data); 
+
+        res.status(200).send({ status: 'OK', message: "Project was deleted successfully" });
+    } else {
+        res.status(404).send({ status: 'NOT_FOUND', message: 'Project not found' });
+    }
+});
 
 module.exports = adminRouter;

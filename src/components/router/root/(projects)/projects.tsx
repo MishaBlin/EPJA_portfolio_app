@@ -3,26 +3,37 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import { Card, CardContent, CardHeader } from '../../../ui/card';
 import { Badge } from '../../../ui/badge';
+import { fetcher } from '../../../../lib/api/root';
+import { useGetApi } from '../../../../lib/api/useApi';
+import { Skeleton } from '../../../ui/skeleton';
 
-const projects = [
-    {
-        title: 'Telegram Desktop',
-        description: 'Description for project one.',
-        link: 'https://github.com/telegramdesktop/tdesktop',
-        techStack: ['React', 'TypeScript', 'TailwindCSS'],
-        image: 'https://a.d-cd.net/d49a3du-960.jpg', // Add image path
-    },
-    {
-        title: 'VS Code',
-        description: 'Description for project two.',
-        link: 'https://github.com/microsoft/vscode',
-        techStack: ['Node.js', 'Express', 'MongoDB'],
-        image: 'https://i.pinimg.com/originals/ff/34/30/ff343064cb1e726b1fdd31d701d46360.jpg', // Add image path
-    },
-    // Add more projects as needed
-];
+// const projects = [
+//     {
+//         title: 'Telegram Desktop',
+//         description: 'Description for project one.',
+//         link: 'https://github.com/telegramdesktop/tdesktop',
+//         techStack: ['React', 'TypeScript', 'TailwindCSS'],
+//         image: 'https://a.d-cd.net/d49a3du-960.jpg',
+//     },
+//     {
+//         title: 'VS Code',
+//         description: 'Description for project two.',
+//         link: 'https://github.com/microsoft/vscode',
+//         techStack: ['Node.js', 'Express', 'MongoDB'],
+//         image: 'https://i.pinimg.com/originals/ff/34/30/ff343064cb1e726b1fdd31d701d46360.jpg',
+//     },
+// ];
 
 export default function Projects() {
+    const { data: projects, isLoading: isProjectsLoading } = useGetApi(
+        'projects',
+        fetcher,
+    );
+
+    if (!projects || isProjectsLoading) {
+        return <Skeleton className="w-full flex-1" />;
+    }
+
     return (
         <div className="mt-20" id="projects">
             <h1 className="text-4xl font-bold mb-4">Projects</h1>
@@ -39,7 +50,7 @@ export default function Projects() {
                                 </Link>
                             </div>
                         </CardHeader>
-                        <Link to="/project/1">
+                        <Link to={'/project/' + project.id}>
                             <CardContent className="text-muted-foreground">
                                 <img
                                     src={project.image}
