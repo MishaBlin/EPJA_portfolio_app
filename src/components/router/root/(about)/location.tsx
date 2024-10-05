@@ -1,10 +1,18 @@
 import { Card, CardContent, CardHeader } from '../../../ui/card';
 import { PinIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { city } from '../../../../lib/data';
 import React from 'react';
+import { useGetApi } from '../../../../lib/api/useApi';
+import { fetcher } from '../../../../lib/api/root';
+import { Skeleton } from '../../../ui/skeleton';
 
 export default function Location() {
+    const { data: city, isLoading: isCityLoading } = useGetApi('city', fetcher);
+
+    if (!city || isCityLoading) {
+        return <Skeleton className="w-1/2" />;
+    }
+
     return (
         <Card className="w-1/2 rounded-md">
             <CardHeader className="">

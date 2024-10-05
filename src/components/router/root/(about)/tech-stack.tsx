@@ -1,8 +1,10 @@
 import { Card, CardContent, CardHeader } from '../../../ui/card';
 import { FileCodeIcon } from 'lucide-react';
-import { techStack } from '../../../../lib/data';
 import { Badge } from '../../../ui/badge';
 import React from 'react';
+import { fetcher } from '../../../../lib/api/root';
+import { useGetApi } from '../../../../lib/api/useApi';
+import { Skeleton } from '../../../ui/skeleton';
 
 const colors = [
     'bg-red-400',
@@ -26,6 +28,15 @@ function getRandomColor() {
 }
 
 export default function TechStack() {
+    const { data: techStack, isLoading: isTechStackLoading } = useGetApi(
+        'tech-stack',
+        fetcher,
+    );
+
+    if (!techStack || isTechStackLoading) {
+        return <Skeleton className="w-full flex-1" />;
+    }
+
     return (
         <Card className="rounded-md flex-1">
             <CardHeader className="text-foreground">

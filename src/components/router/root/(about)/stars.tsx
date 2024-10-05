@@ -1,17 +1,30 @@
-import { githubRepo } from '../../../../lib/data';
 import { Card, CardContent, CardHeader } from '../../../ui/card';
 import { ExternalLinkIcon, Star } from 'lucide-react';
 import { numberStars } from '../../../../lib/utils';
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { fetchGithubStars } from '../../../../lib/api/github';
+import { useGetApi } from '../../../../lib/api/useApi';
+import { fetcher } from '../../../../lib/api/root';
+import { Skeleton } from '../../../ui/skeleton';
 
 export default function Stars() {
     const [stars, setStars] = useState(0);
 
+    const { data: githubRepo, isLoading: isGithubRepoLoading } = useGetApi(
+        'github-repo',
+        fetcher,
+    );
+
     useEffect(() => {
-        fetchGithubStars().then((stars) => setStars(stars));
-    }, []);
+        if (githubRepo) {
+            fetchGithubStars(githubRepo).then((stars) => setStars(stars));
+        }
+    }, [githubRepo]);
+
+    if (!githubRepo || isGithubRepoLoading) {
+        return <Skeleton className="flex-1 w-full" />;
+    }
 
     return (
         <Link

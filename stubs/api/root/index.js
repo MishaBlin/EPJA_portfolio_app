@@ -7,7 +7,7 @@ rootRouter.get('/get/nickname', (req, res) => {
 });
 
 rootRouter.get('/get/tech-stack', (req, res) => {
-    res.status(200).send({ 'status': 'OK', 'data': data.githubRepo });
+    res.status(200).send({ 'status': 'OK', 'data': data.techStack });
 });
 
 rootRouter.get('/get/github-repo', (req, res) => {
