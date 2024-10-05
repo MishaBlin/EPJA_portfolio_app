@@ -30,6 +30,7 @@ export default [
         rules: {
             ...prettierConfig.rules,
             'prettier/prettier': 'error',
+            '@typescript-eslint/no-explicit-any': ['off'],
         },
     },
 ];
