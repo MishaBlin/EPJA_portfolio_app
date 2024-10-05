@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './home';
-import About from './about';
+import About from './(about)/about';
 
 export default function Root() {
     return (

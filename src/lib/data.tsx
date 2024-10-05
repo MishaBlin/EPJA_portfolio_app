@@ -67,7 +67,7 @@ interface Link {
 
 export const navLinks: Link[] = [
     {
-        href: '#about',
+        href: '#(about)',
         title: 'About',
     },
     {

@@ -7,11 +7,11 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { fetchGithubStars } from '../../../lib/api/github';
-import { Card, CardContent, CardHeader } from '../../ui/card';
-import { city, githubRepo, links, techStack } from '../../../lib/data';
-import { numberStars } from '../../../lib/utils';
-import { Badge } from '../../ui/badge';
+import { fetchGithubStars } from '../../../../lib/api/github';
+import { Card, CardContent, CardHeader } from '../../../ui/card';
+import { city, githubRepo, links, techStack } from '../../../../lib/data';
+import { numberStars } from '../../../../lib/utils';
+import { Badge } from '../../../ui/badge';
 
 const colors = [
     'bg-red-400',
