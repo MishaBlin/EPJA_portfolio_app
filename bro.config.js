@@ -26,14 +26,14 @@ module.exports = {
     },
     /* use https://kc.admin.inno-js.ru/ to create config, navigations and features */
     navigations: {
-        'portfolio_app.main': '/portfolio_app'
+        'cats.main': '/cats'
     },
     features: {
-        'portfolio_app': {
+        'cats': {
             // add your features here in the format [featureName]: { value: string }
         }
     },
     config: {
-        'portfolio_app.api': '/api'
+        'cats.api': '/api'
     }
 };

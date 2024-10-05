@@ -1,5 +1,5 @@
 {
-  "name": "portfolio_app",
+  "name": "cats",
   "version": "0.0.1",
   "main": "./src/index.tsx",
   "scripts": {
