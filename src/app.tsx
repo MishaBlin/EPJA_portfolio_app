@@ -3,8 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './components/router/root/page';
 import Layout from './components/router/root/layout';
 import Auth from './components/router/auth/page';
-
-const basePath = 'cats';
+import pkg from '../package.json';
 
 const router = createBrowserRouter(
     [
@@ -24,7 +23,7 @@ const router = createBrowserRouter(
         },
     ],
     {
-        basename: `/${basePath}`,
+        basename: `/${pkg.name}`,
     },
 );
 
