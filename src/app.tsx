@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './components/router/root/page';
 import Layout from './components/router/root/layout';
 import Auth from './components/router/auth/page';
-import ProjectDetail from './components/router/project/projectDetail';
 
 const basePath = 'cats';
 
