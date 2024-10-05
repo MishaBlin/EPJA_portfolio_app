@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { links } from '../../../lib/data';
-import { ShineBorder } from '../../ui/shine-border';
+import { links } from '../../../../lib/data';
+import { ShineBorder } from '../../../ui/shine-border';
 
 export default function Home() {
     return (

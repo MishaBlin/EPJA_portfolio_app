@@ -1,8 +1,8 @@
 import { ExternalLinkIcon, FileCodeIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { Card, CardContent, CardHeader } from '../../ui/card';
-import { Badge } from '../../ui/badge';
+import { Card, CardContent, CardHeader } from '../../../ui/card';
+import { Badge } from '../../../ui/badge';
 
 const projects = [
     {

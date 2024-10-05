@@ -1,9 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { Separator } from '../../ui/separator';
-import { Skeleton } from '../../ui/skeleton';
-import { useGetApi } from '../../../lib/api/useApi';
-import { fetcher } from '../../../lib/api/root';
+import { Separator } from '../../../ui/separator';
+import { Skeleton } from '../../../ui/skeleton';
+import { useGetApi } from '../../../../lib/api/useApi';
+import { fetcher } from '../../../../lib/api/root';
 
 export default function Header() {
     const location = useLocation();
@@ -28,7 +28,7 @@ export default function Header() {
                 {!nickname || isNicknameLoading ? (
                     <Skeleton className="w-[100px] h-[30px]" />
                 ) : (
-                    <Link to="/" className="font-bold text-2xl">
+                    <Link to="/public" className="font-bold text-2xl">
                         {nickname.name}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-pink-600">
                             {nickname.colored}
