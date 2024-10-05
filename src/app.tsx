@@ -4,7 +4,7 @@ import Root from './components/router/root/page';
 import Layout from './components/router/layout';
 import Auth from './components/router/auth/page';
 
-const basePath = '/cats';
+const basePath = 'cats';
 
 const router = createBrowserRouter(
     [
