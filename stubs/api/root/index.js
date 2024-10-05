@@ -26,5 +26,20 @@ rootRouter.get('/get/links', (req, res) => {
     res.status(200).send({ 'status': 'OK', 'data': data.links });
 });
 
+rootRouter.get('/get/projects', (req, res) => {
+    res.status(200).send({ 'statues': 'OK', 'data': data.projects });
+});
+
+rootRouter.get('/get/projects/:id', (req, res) => {
+    const { id } = req.params;
+    const project = data.projects.find(p => p.id === id);
+    
+    if (project) {
+        res.status(200).send({ status: 'OK', data: project });
+    } else {
+        res.status(404).send({ status: 'NOT_FOUND', message: 'Project not found' });
+    }
+});
+
 
 module.exports = rootRouter;

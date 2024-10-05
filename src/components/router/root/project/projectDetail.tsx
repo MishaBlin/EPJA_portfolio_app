@@ -1,29 +1,21 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { GitHubReadme } from 'react-github-readme-md';
-
-const projects = [
-    {
-        id: '0',
-        title: 'Project One',
-        description: 'Description for project one.',
-        link: 'https://github.com/telegramdesktop/tdesktop',
-        techStack: ['React', 'TypeScript', 'TailwindCSS'],
-        image: '/assets/Image.jpg',
-    },
-    {
-        id: '1',
-        title: 'Project Two',
-        description: 'Description for project two.',
-        link: 'https://github.com/microsoft/vscode',
-        techStack: ['Node.js', 'Express', 'MongoDB'],
-        image: 'path/to/project-two-image.jpg',
-    },
-];
+import { fetcher } from '../../../../lib/api/root';
+import { useGetApi } from '../../../../lib/api/useApi';
+import { Skeleton } from '../../../ui/skeleton';
 
 export default function ProjectDetail() {
     const { id } = useParams();
-    const project = projects.find((p) => p.id === id);
+
+    const { data: project, isLoading: isProjectLoading } = useGetApi(
+        `projects/${id}`,
+        fetcher,
+    );
+
+    if (!project || isProjectLoading) {
+        return <Skeleton className="w-full flex-1" />;
+    }
 
     const splitLink = (link: string) => {
         const path = new URL(link).pathname;
