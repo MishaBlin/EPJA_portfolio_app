@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from '../../../ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from '../../../ui/card';
 import { FileCodeIcon } from 'lucide-react';
 import { Badge } from '../../../ui/badge';
 import React from 'react';
@@ -27,7 +27,7 @@ function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
-export default function TechStack() {
+export default function TechStack({ editButton = null }) {
     const { data: techStack, isLoading: isTechStackLoading } = useGetApi(
         'tech-stack',
         fetcher,
@@ -57,6 +57,7 @@ export default function TechStack() {
                     </Badge>
                 ))}
             </CardContent>
+            {editButton ? <CardFooter>{editButton}</CardFooter> : null}
         </Card>
     );
 }

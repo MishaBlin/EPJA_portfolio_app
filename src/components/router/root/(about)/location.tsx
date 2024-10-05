@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from '../../../ui/card';
+import { Card, CardContent, CardHeader, CardFooter } from '../../../ui/card';
 import { PinIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import React from 'react';
@@ -6,7 +6,7 @@ import { useGetApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 import { Skeleton } from '../../../ui/skeleton';
 
-export default function Location() {
+export default function Location({ editButton = null }) {
     const { data: city, isLoading: isCityLoading } = useGetApi('city', fetcher);
 
     if (!city || isCityLoading) {
@@ -25,6 +25,7 @@ export default function Location() {
                     {city.name}
                 </Link>
             </CardContent>
+            {editButton ? <CardFooter>{editButton}</CardFooter> : null}
         </Card>
     );
 }

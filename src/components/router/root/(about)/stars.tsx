@@ -7,8 +7,9 @@ import { fetchGithubStars } from '../../../../lib/api/github';
 import { useGetApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 import { Skeleton } from '../../../ui/skeleton';
+import { CardFooter } from '../../../ui/card';
 
-export default function Stars() {
+export default function Stars({ editButton = null }) {
     const [stars, setStars] = useState(0);
 
     const { data: githubRepo, isLoading: isGithubRepoLoading } = useGetApi(
@@ -27,12 +28,12 @@ export default function Stars() {
     }
 
     return (
-        <Link
-            to={`https://github.com/${githubRepo.author}/${githubRepo.repo}`}
-            target="_blank"
-            className="flex-1"
-        >
-            <Card className="rounded-md group h-full">
+        <Card className="rounded-md group h-full">
+            <Link
+                to={`https://github.com/${githubRepo.author}/${githubRepo.repo}`}
+                target="_blank"
+                className="flex-1"
+            >
                 <CardHeader className="">
                     <div className="flex justify-between items-center">
                         <div className="flex gap-x-3 items-center">
@@ -45,10 +46,11 @@ export default function Stars() {
                         <ExternalLinkIcon size={20} />
                     </div>
                 </CardHeader>
-                <CardContent className="text-2xl font-bold text-foreground flex flex-col gap-y-1.5">
-                    {stars} {numberStars(stars)}
-                </CardContent>
-            </Card>
-        </Link>
+            </Link>
+            <CardContent className="text-2xl font-bold text-foreground flex flex-col gap-y-1.5">
+                {stars} {numberStars(stars)}
+            </CardContent>
+            {editButton ? <CardFooter>{editButton}</CardFooter> : null}
+        </Card>
     );
 }
