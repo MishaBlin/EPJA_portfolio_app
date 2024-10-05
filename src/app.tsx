@@ -4,6 +4,7 @@ import Root from './components/router/root/page';
 import Layout from './components/router/layout';
 import Auth from './components/router/auth/page';
 import Projects from './components/router/projects/page';
+import ProjectDetail from './components/router/projects/project/projectDetail';
 
 const basePath = 'cats';
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter(
                 {
                     path: `/projects`,
                     element: <Projects />,
+                },
+                {
+                    path: `/projects/:id`,
+                    element: <ProjectDetail />,
                 },
                 {
                     path: `/auth`,
