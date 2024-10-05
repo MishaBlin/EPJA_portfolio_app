@@ -3,25 +3,29 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './components/router/root/page';
 import Layout from './components/router/layout';
 import Auth from './components/router/auth/page';
-import pkg from '../package.json';
 
-const basePath = pkg.name;
+const basePath = '/cats';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+    [
+        {
+            element: <Layout />,
+            children: [
+                {
+                    path: ``,
+                    element: <Root />,
+                },
+                {
+                    path: `/auth`,
+                    element: <Auth />,
+                },
+            ],
+        },
+    ],
     {
-        element: <Layout />,
-        children: [
-            {
-                path: `/${basePath}`,
-                element: <Root />,
-            },
-            {
-                path: `/${basePath}/auth`,
-                element: <Auth />,
-            },
-        ],
+        basename: `/${basePath}`,
     },
-]);
+);
 
 const App = () => {
     return <RouterProvider router={router} />;
