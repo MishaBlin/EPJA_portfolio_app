@@ -57,10 +57,28 @@ export default function EditTechStack() {
                                                 ])
                                             }
                                         />
-                                        <Button>Delete</Button>
+                                        <Button
+                                            onClick={() =>
+                                                setStack([
+                                                    ...stack.filter(
+                                                        (_, i) => i !== index,
+                                                    ),
+                                                ])
+                                            }
+                                        >
+                                            Delete
+                                        </Button>
                                     </div>
                                 </li>
                             ))}
+                            <li className="px-2">
+                                <Button
+                                    className="w-full"
+                                    onClick={() => setStack([...stack, ''])}
+                                >
+                                    Add new
+                                </Button>
+                            </li>
                         </ul>
                     </DialogDescription>
                 </DialogHeader>
