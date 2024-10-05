@@ -1,0 +1,84 @@
+{
+  "nickname": {
+    "default": "supercool",
+    "colored": "nickname"
+  },
+  "techStack": [
+    "React",
+    "Next.js",
+    "Svelte",
+    "SvelteKit",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "TypeScript",
+    "TailwindCSS",
+    "Styled-Components",
+    "Framer-Motion",
+    "shadcn-ui",
+    "Ant-Design",
+    "ESLint",
+    "Prettier",
+    "husky",
+    "lint-staged",
+    "Redux",
+    "RTK Query",
+    "Tanstack Query",
+    "Python",
+    "FastApi",
+    "Flask",
+    "SQLite",
+    "PostgreSQL",
+    "MongoDB",
+    "SQLAlchemy",
+    "Alembic",
+    "PyPy",
+    "poetry",
+    "pylint",
+    "GitHub Actions",
+    "GitLab CI/CD",
+    "Docker",
+    "Git"
+  ],
+  "githubRepo": {
+    "author": "MishaBlin",
+    "repo": "EPJA_portfolio_app"
+  },
+  "city": {
+    "name": "Innopolis",
+    "href": "https://ru.wikipedia.org/wiki/Иннополис"
+  },
+  "navLinks": [
+    {
+      "href": "#about",
+      "title": "About"
+    },
+    {
+      "href": "#projects",
+      "title": "Projects"
+    }
+  ],
+
+  "links": [
+    {
+      "href": "mailto:svyatoslavsvyatkin@yandex.ru",
+      "title": "Mail"
+    },
+    {
+      "href": "https://t.me/dmhd6219",
+      "title": "Telegram"
+    },
+    {
+      "href": "https://github.com/dmhd6219",
+      "title": "GitHub"
+    },
+    {
+      "href": "https://last.fm/user/dmhd",
+      "title": "LastFm"
+    },
+    {
+      "href": "https://pay.cloudtips.ru/p/02da9349",
+      "title": "Buy me a coffee"
+    }
+  ]
+}
