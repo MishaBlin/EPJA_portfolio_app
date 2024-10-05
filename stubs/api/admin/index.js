@@ -9,7 +9,7 @@ let data = require('../data.json');
 const verifyToken = (req, res, next) => {
     const token = req.headers['authorization'];
     if (token === process.env.TOKEN) {
-        next(); // Token is valid, proceed to the next middleware
+        next();
     } else {
         res.status(403).send({ 'status': 'Failed', 'data': 'Invalid token' });
     }
@@ -20,12 +20,12 @@ const saveData = (data) => {
 };
 
 adminRouter.post('/edit/nickname', verifyToken, (req, res) => {
-    const { nickname } = req.body;
-    if (!nickname) {
+    const { name, colored } = req.body;
+    if (!name || !colored) {
         return res.status(400).send({ 'status': 'Failed', 'data': 'Nickname is required' });
     }
 
-    data.nickname = nickname;
+    data.nickname = { name, colored };
     saveData(data);
 
     res.status(200).send({ 'status': 'OK', 'data': 'Nickname updated successfully' });
@@ -49,16 +49,48 @@ adminRouter.post('/edit/city', verifyToken, (req, res) => {
         return res.status(400).send({ 'status': 'Failed', 'data': 'City is required' });
     }
 
+    const isValid = typeof city === 'object' && 'name' in city && 'href' in city;
+
+    if (!isValid) {
+        return res.status(400).send({ 'status': 'Failed', 'data': 'City must contain href and name' });
+    }
+
     data.city = city;
     saveData(data);
 
     res.status(200).send({ 'status': 'OK', 'data': 'City updated successfully' });
 });
 
+adminRouter.post('/edit/github-repo', verifyToken, (req, res) => {
+    const { github } = req.body;
+    if (!github) {
+        return res.status(400).send({ 'status': 'Failed', 'data': 'Github is required' });
+    }
+
+    const isValid = typeof github === 'object' && 'author' in github && 'repo' in github;
+
+    if (!isValid) {
+        return res.status(400).send({ 'status': 'Failed', 'data': 'Github must contain author and repo' });
+    }
+
+    data.githubRepo = github;
+    saveData(data);
+
+    res.status(200).send({ 'status': 'OK', 'data': 'Github updated successfully' });
+});
+
 adminRouter.post('/edit/nav-links', verifyToken, (req, res) => {
     const { navLinks } = req.body;
     if (!navLinks || !Array.isArray(navLinks)) {
         return res.status(400).send({ 'status': 'Failed', 'data': 'Valid navLinks are required' });
+    }
+    
+    const isValid = navLinks.every(link => 
+        link && typeof link === 'object' && 'href' in link && 'title' in link
+    );
+
+    if (!isValid) {
+        return res.status(400).send({ 'status': 'Failed', 'data': 'Each navLink must contain href and title' });
     }
 
     data.navLinks = navLinks;
@@ -73,10 +105,20 @@ adminRouter.post('/edit/links', verifyToken, (req, res) => {
         return res.status(400).send({ 'status': 'Failed', 'data': 'Valid links are required' });
     }
 
+    const isValid = links.every(link => 
+        link && typeof link === 'object' && 'href' in link && 'title' in link
+    );
+
+    if (!isValid) {
+        return res.status(400).send({ 'status': 'Failed', 'data': 'Each link must contain href and title' });
+    }
+
     data.links = links;
     saveData(data);
 
     res.status(200).send({ 'status': 'OK', 'data': 'Links updated successfully' });
 });
+
+
 
 module.exports = adminRouter;
