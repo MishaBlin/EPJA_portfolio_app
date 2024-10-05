@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './components/router/root/page';
-import Layout from './components/router/layout';
+import Layout from './components/router/root/layout';
 import Auth from './components/router/auth/page';
 
 const basePath = 'cats';
@@ -15,11 +15,12 @@ const router = createBrowserRouter(
                     path: ``,
                     element: <Root />,
                 },
-                {
-                    path: `/auth`,
-                    element: <Auth />,
-                },
             ],
+        },
+
+        {
+            path: `/auth`,
+            element: <Auth />,
         },
     ],
     {
