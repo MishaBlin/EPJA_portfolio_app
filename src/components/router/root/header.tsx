@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { Separator } from '../ui/separator';
-import { me, navLinks } from '../../lib/data';
+import { Separator } from '../../ui/separator';
+import { me, navLinks } from '../../../lib/data';
 
 export default function Header() {
     const location = useLocation();
@@ -12,9 +12,9 @@ export default function Header() {
     }, [location]);
 
     return (
-        <header className="sticky top-0 bg-background">
+        <header className="sticky top-0 bg-background z-50">
             <div className="py-4 flex justify-between items-center">
-                <Link to="/" className="font-bold text-2xl">
+                <Link to="/public" className="font-bold text-2xl">
                     {me.default}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-pink-600">
                         {me.colored}

@@ -1,9 +1,5 @@
 import React, { ReactElement } from 'react';
-import MailIcon from '../components/icons/mail';
-import TelegramIcon from '../components/icons/telegram';
-import GithubIcon from '../components/icons/github';
-import LastFmIcon from '../components/icons/lastfm';
-import CoffeeIcon from '../components/icons/coffee';
+import { Icons } from '../components/ui/icons';
 
 export const techStack = [
     'React',
@@ -84,26 +80,26 @@ export const links: Link[] = [
     {
         href: 'mailto:svyatoslavsvyatkin@yandex.ru',
         title: 'Mail',
-        icon: <MailIcon color="muted-foreground" />,
+        icon: <Icons.mail color="muted-foreground" />,
     },
     {
         href: 'https://t.me/dmhd6219',
         title: 'Telegram',
-        icon: <TelegramIcon color="muted-foreground" />,
+        icon: <Icons.telegram color="muted-foreground" />,
     },
     {
         href: 'https://github.com/dmhd6219',
         title: 'GitHub',
-        icon: <GithubIcon color="muted-foreground" />,
+        icon: <Icons.github color="muted-foreground" />,
     },
     {
         href: 'https://last.fm/user/dmhd',
         title: 'LastFm',
-        icon: <LastFmIcon color="muted-foreground" />,
+        icon: <Icons.lastFm color="muted-foreground" />,
     },
     {
         href: 'https://pay.cloudtips.ru/p/02da9349',
         title: 'Buy me a coffee',
-        icon: <CoffeeIcon color="muted-foreground" />,
+        icon: <Icons.coffee color="muted-foreground" />,
     },
 ];
