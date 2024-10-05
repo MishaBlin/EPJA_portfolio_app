@@ -3,6 +3,7 @@ import EditNavLinks from './edit-nav-links';
 import EditGitHub from './edit-github';
 import EditCity from './edit-city';
 import EditTechStack from './edit-tech-stack';
+import EditSocials from './edit-socials';
 
 export default function AdminPage() {
     return (
@@ -25,6 +26,16 @@ export default function AdminPage() {
             <div>
                 <h1>TechStack</h1>
                 <EditTechStack />
+            </div>
+
+            <div>
+                <h1>NavLinks</h1>
+                <EditNavLinks />
+            </div>
+
+            <div>
+                <h1>Socials</h1>
+                <EditSocials />
             </div>
         </div>
     );

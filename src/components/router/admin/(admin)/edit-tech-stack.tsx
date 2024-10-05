@@ -40,7 +40,7 @@ export default function EditTechStack() {
                 <DialogHeader>
                     <DialogTitle>Edit Tech Stack</DialogTitle>
                     <DialogDescription className="pt-4">
-                        <ul className="flex flex-col py-2 gap-y-3 h-[30vh] overflow-y-scroll">
+                        <ul className="flex flex-col p-2 gap-y-3 h-[50vh] overflow-y-scroll">
                             {stack.map((elem, index) => (
                                 <li key={index} className="px-2">
                                     <div className="flex gap-x-1.5">
