@@ -14,11 +14,11 @@ import { Label } from '../../../ui/label';
 import { useGetApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 
-export default function EditNavLinks() {
+export default function EditSocials() {
     const [open, setOpen] = React.useState(false);
 
     const { data: navLinks, isLoading: navLinksLoading } = useGetApi(
-        'nav-links',
+        'links',
         fetcher,
     );
 
