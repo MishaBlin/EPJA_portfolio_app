@@ -12,7 +12,7 @@ export default function Header() {
     }, [location]);
 
     return (
-        <header className="sticky top-0 bg-background">
+        <header className="sticky top-0 bg-background z-50">
             <div className="py-4 flex justify-between items-center">
                 <Link to="/public" className="font-bold text-2xl">
                     {me.default}
