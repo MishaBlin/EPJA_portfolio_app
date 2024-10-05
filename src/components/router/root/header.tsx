@@ -1,9 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { Separator } from '../../../ui/separator';
-import { Skeleton } from '../../../ui/skeleton';
-import { useGetApi } from '../../../../lib/api/useApi';
-import { fetcher } from '../../../../lib/api/root';
+import { Separator } from '../../ui/separator';
+import { Skeleton } from '../../ui/skeleton';
+import { useGetApi } from '../../../lib/api/useApi';
+import { fetcher } from '../../../lib/api/root';
 
 export default function Header() {
     const location = useLocation();

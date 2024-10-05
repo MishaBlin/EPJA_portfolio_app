@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { Separator } from '../../../ui/separator';
-import { useGetApi } from '../../../../lib/api/useApi';
-import { fetcher } from '../../../../lib/api/root';
-import { Skeleton } from '../../../ui/skeleton';
+import { Separator } from '../../ui/separator';
+import { useGetApi } from '../../../lib/api/useApi';
+import { fetcher } from '../../../lib/api/root';
+import { Skeleton } from '../../ui/skeleton';
 
 export default function Footer() {
     const { data: nickname, isLoading: isNicknameLoading } = useGetApi(

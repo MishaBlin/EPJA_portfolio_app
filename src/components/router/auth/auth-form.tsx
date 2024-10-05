@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 import { ny } from '../../../lib/utils';
 import { Input } from '../../ui/input';
@@ -12,18 +10,36 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from '../../ui/tooltip';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-export function UserAuthForm({
-    className,
-    ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+type AuthProps = React.HTMLAttributes<HTMLDivElement>;
+
+export function UserAuthForm({ className, ...props }: AuthProps) {
+    const navigate = useNavigate();
+
+    const [isLoading, setIsLoading] = React.useState(false);
+
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
 
     async function onSubmit(event: React.SyntheticEvent) {
         event.preventDefault();
         setIsLoading(true);
 
-        setTimeout(() => {
+        setTimeout(async () => {
+            await axios
+                .post('/api/cats/auth/login', {
+                    email: email,
+                    password: password,
+                })
+                .then((res) => {
+                    localStorage.setItem('token', res.data.data);
+                })
+                .then(() => {
+                    navigate('/admin');
+                });
+
             setIsLoading(false);
         }, 3000);
     }
@@ -44,6 +60,8 @@ export function UserAuthForm({
                             autoComplete="email"
                             autoCorrect="off"
                             disabled={isLoading}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
 
                         <Input
@@ -53,6 +71,8 @@ export function UserAuthForm({
                             autoCapitalize="none"
                             autoCorrect="off"
                             disabled={isLoading}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <Button disabled={isLoading}>
