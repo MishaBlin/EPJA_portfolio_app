@@ -5,7 +5,7 @@ import { Skeleton } from '../../ui/skeleton';
 import { useGetApi } from '../../../lib/api/useApi';
 import { fetcher } from '../../../lib/api/root';
 
-export default function Header() {
+export default function Header({ editButton = null }) {
     const location = useLocation();
     const [hash, setHash] = useState('');
 
@@ -69,6 +69,7 @@ export default function Header() {
                                 ))}
                             </>
                         )}
+                        {editButton ? <li>{editButton}</li> : null}
                     </ul>
                 </nav>
             </div>

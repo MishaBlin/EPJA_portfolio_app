@@ -39,7 +39,7 @@ export default function EditSocials() {
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Edit Nav Links</DialogTitle>
+                    <DialogTitle>Edit Social Links</DialogTitle>
                     <DialogDescription className="pt-4 flex flex-col gap-y-3">
                         <ul className="flex flex-col p-2 gap-y-3 h-[50vh] overflow-y-scroll">
                             {links.map((elem, index) => (

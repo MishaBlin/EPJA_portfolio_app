@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import AdminHeader from './header';
+import Header from '../root/header';
+import EditNavLinks from './(admin)/edit-nav-links';
 
 export default function AdminLayout() {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function AdminLayout() {
 
     return (
         <div className="container max-w-screen-xl flex flex-col text-white h-full">
-            <AdminHeader />
+            <Header editButton={<EditNavLinks />} />
             <div className="flex-1">
                 <Outlet />
             </div>
