@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './home';
-import About from './about';
 import Projects from './projects';
+import About from './(about)/about';
 
 export default function Root() {
     return (
