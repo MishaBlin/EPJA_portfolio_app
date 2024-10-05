@@ -27,7 +27,7 @@ rootRouter.get('/get/links', (req, res) => {
 });
 
 rootRouter.get('/get/projects', (req, res) => {
-    res.status(200).send({ 'statues': 'OK', 'data': data.projects });
+    res.status(200).send({ 'status': 'OK', 'data': data.projects });
 });
 
 rootRouter.get('/get/projects/:id', (req, res) => {

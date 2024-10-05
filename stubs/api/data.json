@@ -80,5 +80,23 @@
       "href": "https://pay.cloudtips.ru/p/02da9349",
       "title": "Buy me a coffee"
     }
+  ],
+  "projects": [
+    {
+      "id": "telegram",
+      "title": "Telegram Desktop",
+      "description": "Description for project one.",
+      "link": "https://github.com/telegramdesktop/tdesktop",
+      "techStack": ["React", "TypeScript", "TailwindCSS"],
+      "image": "https://a.d-cd.net/d49a3du-960.jpg"
+    },
+    {
+      "id": "vscode",
+      "title": "VS Code",
+      "description": "Description for project two.",
+      "link": "https://github.com/microsoft/vscode",
+      "techStack": ["Node.js", "Express", "MongoDB"],
+      "image": "https://i.pinimg.com/originals/ff/34/30/ff343064cb1e726b1fdd31d701d46360.jpg"
+    }
   ]
 }
