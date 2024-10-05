@@ -4,6 +4,7 @@ import Root from './components/router/root/page';
 import Layout from './components/router/root/layout';
 import Auth from './components/router/auth/page';
 import pkg from '../package.json';
+import ProjectDetail from './components/router/project/projectDetail';
 
 const router = createBrowserRouter(
     [
@@ -13,6 +14,10 @@ const router = createBrowserRouter(
                 {
                     path: ``,
                     element: <Root />,
+                },
+                {
+                    path: '/project/:id',
+                    element: <ProjectDetail />,
                 },
             ],
         },

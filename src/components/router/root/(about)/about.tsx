@@ -7,7 +7,7 @@ import TechStack from './tech-stack';
 
 export default function About() {
     return (
-        <div>
+        <div id="about">
             <h1 className="text-4xl font-bold mb-4">About me</h1>
             <div className="w-full flex gap-x-4 items-stretch">
                 {/*Левый блок*/}
