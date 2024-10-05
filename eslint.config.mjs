@@ -14,8 +14,8 @@ export default [
             'stubs/**/**.*',
             'src/index.tsx',
             '**.config.js',
-            'src/components/ui/**.tsx'
-        ]
+            'src/components/ui/**.tsx',
+        ],
     },
     { languageOptions: { globals: globals.browser } },
     pluginJs.configs.recommended,
@@ -23,14 +23,14 @@ export default [
     pluginReact.configs.flat.recommended,
     {
         plugins: {
-            prettier: pluginPrettier
-        }
+            prettier: pluginPrettier,
+        },
     },
     {
         rules: {
             ...prettierConfig.rules,
             'prettier/prettier': 'error',
-            '@typescript-eslint/no-explicit-any': ['off']
-        }
-    }
+            '@typescript-eslint/no-explicit-any': ['off'],
+        },
+    },
 ];
