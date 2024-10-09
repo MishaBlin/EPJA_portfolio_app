@@ -11,7 +11,7 @@ import {
 import { Button } from '../../../ui/button';
 import { Input } from '../../../ui/input';
 import { Label } from '../../../ui/label';
-import { useGetApi } from '../../../../lib/api/useApi';
+import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 
 export default function EditNickname() {
@@ -31,6 +31,28 @@ export default function EditNickname() {
             setColored(user.colored);
         }
     }, [user]);
+
+    const {
+        postData,
+        error: postError,
+        isMutating,
+    } = usePostApi('/api/cats/admin/edit/nickname');
+
+    const handleSubmit = async () => {
+        const updatedName = { name, colored };
+
+        try {
+            await postData(updatedName);
+
+            if (!postError) {
+                setOpen(false);
+            } else {
+                console.error('Failed to update nickname:', postError);
+            }
+        } catch (error) {
+            console.error('Error updating nickname:', error);
+        }
+    };
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -61,7 +83,9 @@ export default function EditNickname() {
                 </DialogHeader>
                 <DialogFooter>
                     <DialogTrigger asChild>
-                        <Button>Submit</Button>
+                        <Button onClick={handleSubmit} disabled={isMutating}>
+                            Submit
+                        </Button>
                     </DialogTrigger>
                 </DialogFooter>
             </DialogContent>

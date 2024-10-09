@@ -11,13 +11,13 @@ import {
 import { Button } from '../../../ui/button';
 import { Input } from '../../../ui/input';
 import { Label } from '../../../ui/label';
-import { useGetApi } from '../../../../lib/api/useApi';
+import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 
 export default function EditSocials() {
     const [open, setOpen] = React.useState(false);
 
-    const { data: navLinks, isLoading: navLinksLoading } = useGetApi(
+    const { data: socLinks, isLoading: socLinksLoading } = useGetApi(
         'links',
         fetcher,
     );
@@ -27,15 +27,37 @@ export default function EditSocials() {
     );
 
     useEffect(() => {
-        if (navLinks) {
-            setLinks(navLinks);
+        if (socLinks) {
+            setLinks(socLinks);
         }
-    }, [navLinks]);
+    }, [socLinks]);
+
+    const {
+        postData,
+        error: postError,
+        isMutating,
+    } = usePostApi('/api/cats/admin/edit/links');
+
+    const handleSubmit = async () => {
+        const updatedLinks = { links };
+
+        try {
+            await postData(updatedLinks);
+
+            if (!postError) {
+                setOpen(false);
+            } else {
+                console.error('Failed to update social links:', postError);
+            }
+        } catch (error) {
+            console.error('Error updating social links:', error);
+        }
+    };
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger>
-                <Button disabled={!navLinks || navLinksLoading}>Edit</Button>
+                <Button disabled={!socLinks || socLinksLoading}>Edit</Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
@@ -122,7 +144,9 @@ export default function EditSocials() {
                 </DialogHeader>
                 <DialogFooter>
                     <DialogTrigger asChild>
-                        <Button>Submit</Button>
+                        <Button onClick={handleSubmit} disabled={isMutating}>
+                            Submit
+                        </Button>
                     </DialogTrigger>
                 </DialogFooter>
             </DialogContent>
