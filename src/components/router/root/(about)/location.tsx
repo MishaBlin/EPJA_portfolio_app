@@ -26,7 +26,7 @@ export default function Location({ editButton = null }) {
     }
 
     return (
-        <Card className="w-1/2 rounded-md">
+        <Card className="w-1/2 rounded-md flex-col justify-center">
             <CardHeader className="">
                 <div className="flex gap-x-3 items-center">
                     <PinIcon size={20} /> Location

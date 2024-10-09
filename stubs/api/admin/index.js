@@ -119,38 +119,28 @@ adminRouter.post('/edit/links', verifyToken, (req, res) => {
     res.status(200).send({ 'status': 'OK', 'data': 'Links updated successfully' });
 });
 
-adminRouter.post('/projects/new', verifyToken, (req, res) => {
-    const { project } = req.body;
-    if (!project) {
-        return res.status(400).send({ 'status': 'Failed', 'data': 'Project is required' });
+adminRouter.post('/edit/projects', verifyToken, (req, res) => {
+    const { projects } = req.body;
+    if (!projects) {
+        return res.status(400).send({ 'status': 'Failed', 'data': 'Projects are required' });
     }
 
     const projectFields = ['id', 'title', 'description', 'link', 'techStack', 'image'];
 
-    const isValid = projectFields.every(field => field && field in project);
-
-    if (!isValid) {
-        return res.status(400).send({ 'status': 'Failed', 'data': 'Project must contain ' + projectFields.join(", ") });
+    const isValidProject = (project) => {
+        return projectFields.every(field => field && field in project);
     }
 
-    data.projects.push(project);
+    const allProjectsValid = projects.every(project => isValidProject(project));
+
+    if (!allProjectsValid) {
+        return res.status(400).send({ 'status': 'Failed', 'data': 'All projects must contain ' + projectFields.join(", ") });
+    }
+
+    data.projects = projects;
     saveData(data);
 
-    res.status(200).send({ 'status': 'OK', 'data': 'Project was added successfully' });
-});
-
-adminRouter.delete('/projects/:id', verifyToken, (req, res) => {
-    const { id } = req.params;
-    const project = data.projects.find(p => p.id === id);
-
-    if (project) {
-        data.projects = data.projects.filter(p => p.id !== id);
-        saveData(data); 
-
-        res.status(200).send({ status: 'OK', message: "Project was deleted successfully" });
-    } else {
-        res.status(404).send({ status: 'NOT_FOUND', message: 'Project not found' });
-    }
+    res.status(200).send({ 'status': 'OK', 'data': 'Projects updated successfully' });
 });
 
 module.exports = adminRouter;

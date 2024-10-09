@@ -39,13 +39,13 @@ export default function Stars({ editButton = null }) {
     }
 
     return (
-        <Card className="rounded-md group h-full">
+        <Card className="rounded-md group h-full flex flex-col">
             <Link
                 to={`https://github.com/${github.author}/${github.repo}`}
                 target="_blank"
                 className="flex-1"
             >
-                <CardHeader className="">
+                <CardHeader>
                     <div className="flex justify-between items-center">
                         <div className="flex gap-x-3 items-center">
                             <Star
@@ -58,11 +58,12 @@ export default function Stars({ editButton = null }) {
                     </div>
                 </CardHeader>
             </Link>
-            <CardContent className="text-2xl font-bold text-foreground flex flex-col gap-y-1.5">
+            <CardContent className="text-2xl font-bold text-foreground flex flex-col gap-y-1.5 flex-1">
                 {stars} {numberStars(stars)}
             </CardContent>
+
             {editButton ? (
-                <CardFooter>
+                <CardFooter className="mt-auto">
                     <EditGitHub updateGithub={setGithub} />
                 </CardFooter>
             ) : null}

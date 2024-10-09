@@ -5,7 +5,7 @@ import { Skeleton } from '../../ui/skeleton';
 import { useGetApi } from '../../../lib/api/useApi';
 import { fetcher } from '../../../lib/api/root';
 
-export default function Header({ editButton = null }) {
+export default function Header() {
     const location = useLocation();
     const [hash, setHash] = useState('');
 
@@ -38,8 +38,8 @@ export default function Header({ editButton = null }) {
                 <nav>
                     <ul className="flex items-center gap-x-6">
                         <li>
-                            <Link
-                                to="#home"
+                            <a
+                                href="#home"
                                 className={
                                     hash === '#home' || hash === ''
                                         ? 'text-foreground'
@@ -47,7 +47,7 @@ export default function Header({ editButton = null }) {
                                 }
                             >
                                 Home
-                            </Link>
+                            </a>
                         </li>
                         {!navLinks || navLinksLoading ? (
                             <Separator className="w-[200px] h-[24px]" />
@@ -55,8 +55,8 @@ export default function Header({ editButton = null }) {
                             <>
                                 {navLinks.map((link) => (
                                     <li key={link.title}>
-                                        <Link
-                                            to={link.href}
+                                        <a
+                                            href={link.href}
                                             className={
                                                 hash === link.href
                                                     ? 'text-foreground'
@@ -64,12 +64,11 @@ export default function Header({ editButton = null }) {
                                             }
                                         >
                                             {link.title}
-                                        </Link>
+                                        </a>
                                     </li>
                                 ))}
                             </>
                         )}
-                        {editButton ? <li>{editButton}</li> : null}
                     </ul>
                 </nav>
             </div>

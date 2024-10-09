@@ -58,7 +58,6 @@
       "title": "Projects"
     }
   ],
-
   "links": [
     {
       "href": "mailto:svyatoslavsvyatkin@yandex.ru",
@@ -83,20 +82,37 @@
   ],
   "projects": [
     {
-      "id": "telegram",
-      "title": "Telegram Desktop",
-      "description": "Description for project one.",
-      "link": "https://github.com/telegramdesktop/tdesktop",
-      "techStack": ["React", "TypeScript", "TailwindCSS"],
-      "image": "https://a.d-cd.net/d49a3du-960.jpg"
+      "title": "Elasticsearch",
+      "description": "Elasticsearch is a distributed search and analytics engine, scalable data store and vector database optimized for speed and relevance on production-scale workloads.",
+      "link": "https://github.com/elastic/elasticsearch",
+      "techStack": [
+        "Java",
+        "Groovy"
+      ],
+      "image": "https://datascientest.com/en/files/2023/04/Elasticsearch.jpg",
+      "id": "elasticsearch"
     },
     {
-      "id": "vscode",
-      "title": "VS Code",
-      "description": "Description for project two.",
-      "link": "https://github.com/microsoft/vscode",
-      "techStack": ["Node.js", "Express", "MongoDB"],
-      "image": "https://i.pinimg.com/originals/ff/34/30/ff343064cb1e726b1fdd31d701d46360.jpg"
+      "title": "React-native",
+      "description": "React Native brings React's declarative UI framework to iOS and Android. With React Native, you use native UI controls and have full access to the native platform.",
+      "link": "https://github.com/facebook/react-native",
+      "techStack": [
+        "C++",
+        "Javascript",
+        "Kotlin"
+      ],
+      "image": "https://www.simplilearn.com/ice9/free_resources_article_thumb/React_Native_Tutorial.jpg",
+      "id": "react-native"
+    },
+    {
+      "title": "Zarr",
+      "description": "Zarr is a Python package providing an implementation of compressed, chunked, N-dimensional arrays, designed for use in parallel computing. See the documentation for more information.",
+      "link": "https://github.com/zarr-developers/zarr-python",
+      "techStack": [
+        "Python"
+      ],
+      "image": "https://raw.githubusercontent.com/zarr-developers/community/main/logos/logo2.png",
+      "id": "zarr"
     }
   ]
 }
