@@ -1,10 +1,12 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Root from './components/router/root/page';
-import Layout from './components/router/root/(root)/layout';
+import Root from './components/router/root/(root)/page';
+import Layout from './components/router/root/layout';
 import Auth from './components/router/auth/page';
 import pkg from '../package.json';
 import ProjectDetail from './components/router/root/project/projectDetail';
+import AdminLayout from './components/router/admin/layout';
+import AdminPage from './components/router/admin/(admin)/page';
 
 const router = createBrowserRouter(
     [
@@ -18,6 +20,16 @@ const router = createBrowserRouter(
                 {
                     path: '/project/:id',
                     element: <ProjectDetail />,
+                },
+            ],
+        },
+
+        {
+            element: <AdminLayout />,
+            children: [
+                {
+                    path: `/admin`,
+                    element: <AdminPage />,
                 },
             ],
         },
