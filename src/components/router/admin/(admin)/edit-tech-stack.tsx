@@ -13,7 +13,7 @@ import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 import { Input } from '../../../ui/input';
 
-export default function EditTechStack() {
+export default function EditTechStack({ updateTechStack }) {
     const [open, setOpen] = React.useState(false);
 
     const { data: techStack, isLoading: isTechStackLoading } = useGetApi(
@@ -42,6 +42,7 @@ export default function EditTechStack() {
             await postData(updatedStack);
 
             if (!postError) {
+                updateTechStack(stack);
                 setOpen(false);
             } else {
                 console.error('Failed to update tech stack:', postError);

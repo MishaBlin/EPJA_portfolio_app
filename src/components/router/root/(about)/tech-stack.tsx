@@ -1,10 +1,11 @@
 import { Card, CardContent, CardFooter, CardHeader } from '../../../ui/card';
 import { FileCodeIcon } from 'lucide-react';
 import { Badge } from '../../../ui/badge';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { fetcher } from '../../../../lib/api/root';
 import { useGetApi } from '../../../../lib/api/useApi';
 import { Skeleton } from '../../../ui/skeleton';
+import EditTechStack from '../../admin/(admin)/edit-tech-stack';
 
 const colors = [
     'bg-red-400',
@@ -33,6 +34,14 @@ export default function TechStack({ editButton = null }) {
         fetcher,
     );
 
+    const [stack, setStack] = React.useState<string[]>([]);
+
+    useEffect(() => {
+        if (techStack) {
+            setStack(techStack);
+        }
+    }, [techStack]);
+
     if (!techStack || isTechStackLoading) {
         return <Skeleton className="w-full flex-1" />;
     }
@@ -45,7 +54,7 @@ export default function TechStack({ editButton = null }) {
                 </div>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
-                {techStack.map((item) => (
+                {stack.map((item) => (
                     <Badge
                         key={item}
                         className="bg-secondary hover:bg-secondary/80 text-secondary-foreground"
@@ -57,7 +66,12 @@ export default function TechStack({ editButton = null }) {
                     </Badge>
                 ))}
             </CardContent>
-            {editButton ? <CardFooter>{editButton}</CardFooter> : null}
+            {editButton ? (
+                <CardFooter>
+                    {' '}
+                    <EditTechStack updateTechStack={setStack} />{' '}
+                </CardFooter>
+            ) : null}
         </Card>
     );
 }

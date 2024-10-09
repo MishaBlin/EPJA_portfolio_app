@@ -14,7 +14,7 @@ import { Label } from '../../../ui/label';
 import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 
-export default function EditSocials() {
+export default function EditSocials({ updateSocials }) {
     const [open, setOpen] = React.useState(false);
 
     const { data: socLinks, isLoading: socLinksLoading } = useGetApi(
@@ -46,6 +46,7 @@ export default function EditSocials() {
 
             if (!postError) {
                 setOpen(false);
+                updateSocials(links);
             } else {
                 console.error('Failed to update social links:', postError);
             }

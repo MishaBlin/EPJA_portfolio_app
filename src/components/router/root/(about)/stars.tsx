@@ -8,9 +8,14 @@ import { useGetApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 import { Skeleton } from '../../../ui/skeleton';
 import { CardFooter } from '../../../ui/card';
+import EditGitHub from '../../admin/(admin)/edit-github';
 
 export default function Stars({ editButton = null }) {
     const [stars, setStars] = useState(0);
+    const [github, setGithub] = React.useState<{
+        author: string;
+        repo: string;
+    }>({ author: '', repo: '' });
 
     const { data: githubRepo, isLoading: isGithubRepoLoading } = useGetApi(
         'github-repo',
@@ -18,8 +23,14 @@ export default function Stars({ editButton = null }) {
     );
 
     useEffect(() => {
+        if (github) {
+            fetchGithubStars(github).then((stars) => setStars(stars));
+        }
+    }, [github]);
+
+    useEffect(() => {
         if (githubRepo) {
-            fetchGithubStars(githubRepo).then((stars) => setStars(stars));
+            setGithub(githubRepo);
         }
     }, [githubRepo]);
 
@@ -30,7 +41,7 @@ export default function Stars({ editButton = null }) {
     return (
         <Card className="rounded-md group h-full">
             <Link
-                to={`https://github.com/${githubRepo.author}/${githubRepo.repo}`}
+                to={`https://github.com/${github.author}/${github.repo}`}
                 target="_blank"
                 className="flex-1"
             >
@@ -50,7 +61,11 @@ export default function Stars({ editButton = null }) {
             <CardContent className="text-2xl font-bold text-foreground flex flex-col gap-y-1.5">
                 {stars} {numberStars(stars)}
             </CardContent>
-            {editButton ? <CardFooter>{editButton}</CardFooter> : null}
+            {editButton ? (
+                <CardFooter>
+                    <EditGitHub updateGithub={setGithub} />
+                </CardFooter>
+            ) : null}
         </Card>
     );
 }

@@ -14,7 +14,7 @@ import { Label } from '../../../ui/label';
 import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 
-export default function EditGitHub() {
+export default function EditGitHub({ updateGithub }) {
     const [open, setOpen] = React.useState(false);
 
     const { data: githubRepo, isLoading: isGithubRepoLoading } = useGetApi(
@@ -45,6 +45,7 @@ export default function EditGitHub() {
             await postData(updatedGithub);
 
             if (!postError) {
+                updateGithub({ author, repo });
                 setOpen(false);
             } else {
                 console.error('Failed to update github:', postError);

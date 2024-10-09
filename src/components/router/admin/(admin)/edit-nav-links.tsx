@@ -14,7 +14,7 @@ import { Label } from '../../../ui/label';
 import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 
-export default function EditNavLinks() {
+export default function EditNavLinks({ updateLinks }) {
     const [open, setOpen] = React.useState(false);
 
     const { data: navLinks, isLoading: navLinksLoading } = useGetApi(
@@ -45,6 +45,7 @@ export default function EditNavLinks() {
             await postData(updatedLinks);
 
             if (!postError) {
+                updateLinks(links);
                 setOpen(false);
             } else {
                 console.error('Failed to update navigation links:', postError);
