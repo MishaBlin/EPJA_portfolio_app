@@ -1,42 +1,40 @@
 import { ExternalLinkIcon, FileCodeIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent, CardHeader } from '../../../ui/card';
 import { Badge } from '../../../ui/badge';
 import { fetcher } from '../../../../lib/api/root';
 import { useGetApi } from '../../../../lib/api/useApi';
 import { Skeleton } from '../../../ui/skeleton';
+import EditProjects from '../../admin/(admin)/edit-projects';
+import { Project } from '../../../../lib/types';
 
-// const projects = [
-//     {
-//         title: 'Telegram Desktop',
-//         description: 'Description for project one.',
-//         link: 'https://github.com/telegramdesktop/tdesktop',
-//         techStack: ['React', 'TypeScript', 'TailwindCSS'],
-//         image: 'https://a.d-cd.net/d49a3du-960.jpg',
-//     },
-//     {
-//         title: 'VS Code',
-//         description: 'Description for project two.',
-//         link: 'https://github.com/microsoft/vscode',
-//         techStack: ['Node.js', 'Express', 'MongoDB'],
-//         image: 'https://i.pinimg.com/originals/ff/34/30/ff343064cb1e726b1fdd31d701d46360.jpg',
-//     },
-// ];
-
-export default function Projects() {
-    const { data: projects, isLoading: isProjectsLoading } = useGetApi(
+export default function Projects({ editButton = null }) {
+    const { data: projectsFetch, isLoading: isProjectsLoading } = useGetApi(
         'projects',
         fetcher,
     );
 
-    if (!projects || isProjectsLoading) {
+    const [projects, setProjects] = React.useState<Project[]>([]);
+
+    useEffect(() => {
+        if (projectsFetch) {
+            setProjects(projectsFetch);
+        }
+    }, [projectsFetch]);
+
+    if (!projectsFetch || isProjectsLoading) {
         return <Skeleton className="w-full flex-1" />;
     }
 
     return (
         <div className="mt-20" id="projects">
-            <h1 className="text-4xl font-bold mb-4">Projects</h1>
+            <div className="flex gap-10 items-center py-5">
+                <h1 className="text-4xl font-bold">Projects</h1>
+                {editButton ? (
+                    <EditProjects updateProjects={setProjects} />
+                ) : null}
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {projects.map((project) => (
                     <Card key={project.title} className="rounded-md">

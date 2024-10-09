@@ -11,10 +11,10 @@ import {
 import { Button } from '../../../ui/button';
 import { Input } from '../../../ui/input';
 import { Label } from '../../../ui/label';
-import { useGetApi } from '../../../../lib/api/useApi';
+import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 
-export default function EditNavLinks() {
+export default function EditNavLinks({ updateLinks }) {
     const [open, setOpen] = React.useState(false);
 
     const { data: navLinks, isLoading: navLinksLoading } = useGetApi(
@@ -31,6 +31,29 @@ export default function EditNavLinks() {
             setLinks(navLinks);
         }
     }, [navLinks]);
+
+    const {
+        postData,
+        error: postError,
+        isMutating,
+    } = usePostApi('/api/cats/admin/edit/nav-links');
+
+    const handleSubmit = async () => {
+        const updatedLinks = { navLinks: links };
+
+        try {
+            await postData(updatedLinks);
+
+            if (!postError) {
+                updateLinks(links);
+                setOpen(false);
+            } else {
+                console.error('Failed to update navigation links:', postError);
+            }
+        } catch (error) {
+            console.error('Error updating navigation links:', error);
+        }
+    };
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -122,7 +145,9 @@ export default function EditNavLinks() {
                 </DialogHeader>
                 <DialogFooter>
                     <DialogTrigger asChild>
-                        <Button>Submit</Button>
+                        <Button onClick={handleSubmit} disabled={isMutating}>
+                            Submit
+                        </Button>
                     </DialogTrigger>
                 </DialogFooter>
             </DialogContent>

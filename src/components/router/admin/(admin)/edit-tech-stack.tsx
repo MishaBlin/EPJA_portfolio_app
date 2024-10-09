@@ -9,11 +9,11 @@ import {
     DialogTrigger,
 } from '../../../ui/dialog';
 import { Button } from '../../../ui/button';
-import { useGetApi } from '../../../../lib/api/useApi';
+import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 import { Input } from '../../../ui/input';
 
-export default function EditTechStack() {
+export default function EditTechStack({ updateTechStack }) {
     const [open, setOpen] = React.useState(false);
 
     const { data: techStack, isLoading: isTechStackLoading } = useGetApi(
@@ -28,6 +28,29 @@ export default function EditTechStack() {
             setStack(techStack);
         }
     }, [techStack]);
+
+    const {
+        postData,
+        error: postError,
+        isMutating,
+    } = usePostApi('/api/cats/admin/edit/tech-stack');
+
+    const handleSubmit = async () => {
+        const updatedStack = { techStack: stack };
+
+        try {
+            await postData(updatedStack);
+
+            if (!postError) {
+                updateTechStack(stack);
+                setOpen(false);
+            } else {
+                console.error('Failed to update tech stack:', postError);
+            }
+        } catch (error) {
+            console.error('Error updating tech stack:', error);
+        }
+    };
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -84,7 +107,9 @@ export default function EditTechStack() {
                 </DialogHeader>
                 <DialogFooter>
                     <DialogTrigger asChild>
-                        <Button>Submit</Button>
+                        <Button onClick={handleSubmit} disabled={isMutating}>
+                            Submit
+                        </Button>
                     </DialogTrigger>
                 </DialogFooter>
             </DialogContent>

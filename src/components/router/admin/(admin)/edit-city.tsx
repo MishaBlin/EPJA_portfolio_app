@@ -11,10 +11,10 @@ import {
 import { Button } from '../../../ui/button';
 import { Input } from '../../../ui/input';
 import { Label } from '../../../ui/label';
-import { useGetApi } from '../../../../lib/api/useApi';
+import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 
-export default function EditCity() {
+export default function EditCity({ updateLocation }) {
     const [open, setOpen] = React.useState(false);
 
     const { data: city, isLoading: isCityLoading } = useGetApi('city', fetcher);
@@ -22,12 +22,35 @@ export default function EditCity() {
     const [name, setName] = React.useState('');
     const [href, setHref] = React.useState('');
 
+    const {
+        postData,
+        error: postError,
+        isMutating,
+    } = usePostApi('/api/cats/admin/edit/city');
+
     useEffect(() => {
         if (city) {
             setName(city.name);
             setHref(city.href);
         }
     }, [city]);
+
+    const handleSubmit = async () => {
+        const updatedCity = { name, href };
+
+        try {
+            await postData({ city: updatedCity });
+
+            if (!postError) {
+                updateLocation(updatedCity);
+                setOpen(false);
+            } else {
+                console.error('Failed to update city:', postError);
+            }
+        } catch (error) {
+            console.error('Error updating city:', error);
+        }
+    };
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -56,7 +79,9 @@ export default function EditCity() {
                 </DialogHeader>
                 <DialogFooter>
                     <DialogTrigger asChild>
-                        <Button>Submit</Button>
+                        <Button onClick={handleSubmit} disabled={isMutating}>
+                            Submit
+                        </Button>
                     </DialogTrigger>
                 </DialogFooter>
             </DialogContent>

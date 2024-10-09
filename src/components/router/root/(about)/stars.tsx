@@ -8,9 +8,14 @@ import { useGetApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 import { Skeleton } from '../../../ui/skeleton';
 import { CardFooter } from '../../../ui/card';
+import EditGitHub from '../../admin/(admin)/edit-github';
 
 export default function Stars({ editButton = null }) {
     const [stars, setStars] = useState(0);
+    const [github, setGithub] = React.useState<{
+        author: string;
+        repo: string;
+    }>({ author: '', repo: '' });
 
     const { data: githubRepo, isLoading: isGithubRepoLoading } = useGetApi(
         'github-repo',
@@ -18,8 +23,14 @@ export default function Stars({ editButton = null }) {
     );
 
     useEffect(() => {
+        if (github) {
+            fetchGithubStars(github).then((stars) => setStars(stars));
+        }
+    }, [github]);
+
+    useEffect(() => {
         if (githubRepo) {
-            fetchGithubStars(githubRepo).then((stars) => setStars(stars));
+            setGithub(githubRepo);
         }
     }, [githubRepo]);
 
@@ -28,13 +39,13 @@ export default function Stars({ editButton = null }) {
     }
 
     return (
-        <Card className="rounded-md group h-full">
+        <Card className="rounded-md group h-full flex flex-col">
             <Link
-                to={`https://github.com/${githubRepo.author}/${githubRepo.repo}`}
+                to={`https://github.com/${github.author}/${github.repo}`}
                 target="_blank"
                 className="flex-1"
             >
-                <CardHeader className="">
+                <CardHeader>
                     <div className="flex justify-between items-center">
                         <div className="flex gap-x-3 items-center">
                             <Star
@@ -47,10 +58,15 @@ export default function Stars({ editButton = null }) {
                     </div>
                 </CardHeader>
             </Link>
-            <CardContent className="text-2xl font-bold text-foreground flex flex-col gap-y-1.5">
+            <CardContent className="text-2xl font-bold text-foreground flex flex-col gap-y-1.5 flex-1">
                 {stars} {numberStars(stars)}
             </CardContent>
-            {editButton ? <CardFooter>{editButton}</CardFooter> : null}
+
+            {editButton ? (
+                <CardFooter className="mt-auto">
+                    <EditGitHub updateGithub={setGithub} />
+                </CardFooter>
+            ) : null}
         </Card>
     );
 }

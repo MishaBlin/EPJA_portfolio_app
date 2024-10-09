@@ -4,8 +4,9 @@ import { Separator } from '../../ui/separator';
 import { Skeleton } from '../../ui/skeleton';
 import { useGetApi } from '../../../lib/api/useApi';
 import { fetcher } from '../../../lib/api/root';
+import EditNavLinks from './(admin)/edit-nav-links';
 
-export default function Header() {
+export default function AdminHeader({ nickname }) {
     const location = useLocation();
     const [hash, setHash] = useState('');
 
@@ -13,19 +14,25 @@ export default function Header() {
         setHash(location.hash);
     }, [location]);
 
-    const { data: nickname, isLoading: isNicknameLoading } = useGetApi(
-        'nickname',
-        fetcher,
-    );
     const { data: navLinks, isLoading: navLinksLoading } = useGetApi(
         'nav-links',
         fetcher,
     );
 
+    const [links, setLinks] = React.useState<{ title: string; href: string }[]>(
+        [],
+    );
+
+    useEffect(() => {
+        if (navLinks) {
+            setLinks(navLinks);
+        }
+    }, [navLinks]);
+
     return (
         <header className="sticky top-0 bg-background z-50">
             <div className="py-4 flex justify-between items-center">
-                {!nickname || isNicknameLoading ? (
+                {!nickname ? (
                     <Skeleton className="w-[100px] h-[30px]" />
                 ) : (
                     <Link to="/" className="font-bold text-2xl">
@@ -38,8 +45,8 @@ export default function Header() {
                 <nav>
                     <ul className="flex items-center gap-x-6">
                         <li>
-                            <a
-                                href="#home"
+                            <Link
+                                to="#home"
                                 className={
                                     hash === '#home' || hash === ''
                                         ? 'text-foreground'
@@ -47,16 +54,16 @@ export default function Header() {
                                 }
                             >
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         {!navLinks || navLinksLoading ? (
                             <Separator className="w-[200px] h-[24px]" />
                         ) : (
                             <>
-                                {navLinks.map((link) => (
+                                {links.map((link) => (
                                     <li key={link.title}>
-                                        <a
-                                            href={link.href}
+                                        <Link
+                                            to={link.href}
                                             className={
                                                 hash === link.href
                                                     ? 'text-foreground'
@@ -64,11 +71,14 @@ export default function Header() {
                                             }
                                         >
                                             {link.title}
-                                        </a>
+                                        </Link>
                                     </li>
                                 ))}
                             </>
                         )}
+                        <li>
+                            <EditNavLinks updateLinks={setLinks} />
+                        </li>
                     </ul>
                 </nav>
             </div>
