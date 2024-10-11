@@ -1,20 +1,31 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { UserAuthForm } from './auth-form';
-import { me } from '../../../lib/data';
+import { useGetApi } from '../../../lib/api/useApi';
+import { fetcher } from '../../../lib/api/root';
+import { Skeleton } from '../../ui/skeleton';
 
 export default function Auth() {
+    const { data: nickname, isLoading: isNicknameLoading } = useGetApi(
+        'nickname',
+        fetcher,
+    );
+
     return (
         <div className="container relative h-full flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
             <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
                 <div className="absolute inset-0 bg-zinc-900" />
                 <div className="relative z-20 flex items-center text-lg font-medium">
-                    <Link to="/" className="font-bold text-2xl">
-                        {me.default}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-pink-600">
-                            {me.colored}
-                        </span>
-                    </Link>
+                    {!nickname || isNicknameLoading ? (
+                        <Skeleton className="w-[100px] h-[30px]" />
+                    ) : (
+                        <Link to="/" className="font-bold text-2xl">
+                            {nickname.name}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-pink-600">
+                                {nickname.colored}
+                            </span>
+                        </Link>
+                    )}
                 </div>
                 <div className="relative z-20 mt-auto">
                     <blockquote className="space-y-2">

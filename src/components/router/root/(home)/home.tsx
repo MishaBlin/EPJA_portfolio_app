@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { links } from '../../../../lib/data';
 import { ShineBorder } from '../../../ui/shine-border';
+import { useGetApi } from '../../../../lib/api/useApi';
+import { fetcher } from '../../../../lib/api/root';
 
 export default function Home() {
+    const { data: links } = useGetApi('links', fetcher);
+
     return (
         <div
             className="mt-32 mb-16 max-w-screen-lg text-center font-bold text-4xl md:text-5xl lg:text-6xl mx-auto"
@@ -14,7 +17,11 @@ export default function Home() {
                     className="text-center text-base p-4 font-bold bg-background text-foreground"
                     color={['#be123c', '#db2777']}
                 >
-                    <Link to={links[0].href}>Available for work</Link>
+                    {links ? (
+                        <Link to={links[0].href}>Available for work</Link>
+                    ) : (
+                        <span>Available for work</span>
+                    )}
                 </ShineBorder>
             </div>
 
