@@ -26,8 +26,8 @@ export default function AdminLayout() {
         fetchNickname();
 
         if (
-            !localStorage.getItem('token') ||
-            localStorage.getItem('token') === 'undefined'
+            !localStorage.getItem('cats_token') ||
+            localStorage.getItem('cats_token') === 'undefined'
         ) {
             navigate('/auth');
         }

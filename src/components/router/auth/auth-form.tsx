@@ -34,7 +34,7 @@ export function UserAuthForm({ className, ...props }: AuthProps) {
                     password: password,
                 })
                 .then((res) => {
-                    localStorage.setItem('token', res.data.data);
+                    localStorage.setItem('cats_token', res.data.data);
                 })
                 .then(() => {
                     navigate('/admin');
