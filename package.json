@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "./src/index.tsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "brojs server --port=8099 --with-open-browser",
     "build": "npm run clean && brojs build --dev",
     "build:prod": "npm run clean && brojs build",
