@@ -4,6 +4,6 @@ import '@testing-library/jest-dom';
 import { Button } from '../components/ui/button';
 
 test('Button render', () => {
-    render(<Button>Кнопка</Button>);
-    expect(screen.getByText(/Кнопка/i)).toBeInTheDocument();
+    render(<Button>Button</Button>);
+    expect(screen.getByText(/Button/i)).toBeInTheDocument();
 });
