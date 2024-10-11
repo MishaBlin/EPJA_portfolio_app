@@ -1,0 +1,118 @@
+{
+  "nickname": {
+    "name": "supercool",
+    "colored": "nickname"
+  },
+  "techStack": [
+    "React",
+    "Next.js",
+    "Svelte",
+    "SvelteKit",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "TypeScript",
+    "TailwindCSS",
+    "Styled-Components",
+    "Framer-Motion",
+    "shadcn-ui",
+    "Ant-Design",
+    "ESLint",
+    "Prettier",
+    "husky",
+    "lint-staged",
+    "Redux",
+    "RTK Query",
+    "Tanstack Query",
+    "Python",
+    "FastApi",
+    "Flask",
+    "SQLite",
+    "PostgreSQL",
+    "MongoDB",
+    "SQLAlchemy",
+    "Alembic",
+    "PyPy",
+    "poetry",
+    "pylint",
+    "GitHub Actions",
+    "GitLab CI/CD",
+    "Docker",
+    "Git"
+  ],
+  "githubRepo": {
+    "author": "MishaBlin",
+    "repo": "EPJA_portfolio_app"
+  },
+  "city": {
+    "name": "Innopolis",
+    "href": "https://ru.wikipedia.org/wiki/Иннополис"
+  },
+  "navLinks": [
+    {
+      "href": "#about",
+      "title": "About"
+    },
+    {
+      "href": "#projects",
+      "title": "Projects"
+    }
+  ],
+  "links": [
+    {
+      "href": "mailto:svyatoslavsvyatkin@yandex.ru",
+      "title": "Mail"
+    },
+    {
+      "href": "https://t.me/dmhd6219",
+      "title": "Telegram"
+    },
+    {
+      "href": "https://github.com/dmhd6219",
+      "title": "GitHub"
+    },
+    {
+      "href": "https://last.fm/user/dmhd",
+      "title": "LastFm"
+    },
+    {
+      "href": "https://pay.cloudtips.ru/p/02da9349",
+      "title": "Buy me a coffee"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Elasticsearch",
+      "description": "Elasticsearch is a distributed search and analytics engine, scalable data store and vector database optimized for speed and relevance on production-scale workloads.",
+      "link": "https://github.com/elastic/elasticsearch",
+      "techStack": [
+        "Java",
+        "Groovy"
+      ],
+      "image": "https://datascientest.com/en/files/2023/04/Elasticsearch.jpg",
+      "id": "elasticsearch"
+    },
+    {
+      "title": "React-native",
+      "description": "React Native brings React's declarative UI framework to iOS and Android. With React Native, you use native UI controls and have full access to the native platform.",
+      "link": "https://github.com/facebook/react-native",
+      "techStack": [
+        "C++",
+        "Javascript",
+        "Kotlin"
+      ],
+      "image": "https://www.simplilearn.com/ice9/free_resources_article_thumb/React_Native_Tutorial.jpg",
+      "id": "react-native"
+    },
+    {
+      "title": "Zarr",
+      "description": "Zarr is a Python package providing an implementation of compressed, chunked, N-dimensional arrays, designed for use in parallel computing. See the documentation for more information.",
+      "link": "https://github.com/zarr-developers/zarr-python",
+      "techStack": [
+        "Python"
+      ],
+      "image": "https://raw.githubusercontent.com/zarr-developers/community/main/logos/logo2.png",
+      "id": "zarr"
+    }
+  ]
+}
