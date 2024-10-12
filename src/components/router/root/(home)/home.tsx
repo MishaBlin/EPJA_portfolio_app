@@ -4,8 +4,10 @@ import { ShineBorder } from '../../../ui/shine-border';
 import { useGetApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 
-export default function Home() {
-    const { data: links } = useGetApi('links', fetcher);
+export default function Home({ links }: { links?: { href: string }[] }) {
+    const { data } = useGetApi('links', fetcher);
+
+    const linksData = links ? links : data;
 
     return (
         <div
@@ -17,8 +19,8 @@ export default function Home() {
                     className="text-center text-base p-4 font-bold bg-background text-foreground"
                     color={['#be123c', '#db2777']}
                 >
-                    {links ? (
-                        <Link to={links[0].href}>Available for work</Link>
+                    {linksData ? (
+                        <Link to={linksData[0].href}>Available for work</Link>
                     ) : (
                         <span>Available for work</span>
                     )}
