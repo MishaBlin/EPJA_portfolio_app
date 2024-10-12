@@ -122,7 +122,7 @@ adminRouter.post('/edit/links', verifyToken, (req, res) => {
 adminRouter.post('/edit/projects', verifyToken, (req, res) => {
     const { projects } = req.body;
     if (!projects) {
-        return res.status(400).send({ 'status': 'Failed', 'data': 'Projects are required.' });
+        return res.status(400).send({ 'status': 'Failed', 'data': 'Projects are required' });
     }
 
     const projectFields = ['id', 'title', 'description', 'link', 'techStack', 'image'];
