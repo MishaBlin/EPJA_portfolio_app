@@ -19,6 +19,7 @@ npm ci
 
 ```
 TOKEN=ASDFGHJKLLKJHGFDSDFGHJKJHGF
+BACKEND=/ms/epja-2024-1/cats
 ```
 
 ### 4. Launch dev build
