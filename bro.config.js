@@ -34,6 +34,7 @@ module.exports = {
         }
     },
     config: {
-        'cats.api': '/api'
+        'cats.api': '/api',
+        'cats.backend': process.env.BACKEND
     }
 };
