@@ -47,7 +47,7 @@ export default function EditProjects({ updateProjects }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi('/ms/epja-2024-1/cats/admin/edit/projects');
+    } = usePostApi(`${process.env.BACKEND}/admin/edit/projects`);
 
     const handleSubmit = async () => {
         const transformedProjects = rawProjects.map((project) => ({

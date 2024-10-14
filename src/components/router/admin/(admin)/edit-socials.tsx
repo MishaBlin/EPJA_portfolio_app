@@ -36,7 +36,7 @@ export default function EditSocials({ updateSocials }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi('/ms/epja-2024-1/cats/admin/edit/links');
+    } = usePostApi(`${process.env.BACKEND}/admin/edit/links`);
 
     const handleSubmit = async () => {
         const updatedLinks = { links };

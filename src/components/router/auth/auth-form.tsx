@@ -29,7 +29,7 @@ export function UserAuthForm({ className, ...props }: AuthProps) {
 
         setTimeout(async () => {
             await axios
-                .post('/ms/epja-2024-1/cats/auth//login', {
+                .post(`${process.env.BACKEND}/auth/login`, {
                     email: email,
                     password: password,
                 })

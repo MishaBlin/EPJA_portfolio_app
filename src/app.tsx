@@ -6,7 +6,7 @@ import Auth from './components/router/auth/page';
 import pkg from '../package.json';
 import ProjectDetail from './components/router/root/project/projectDetail';
 import AdminLayout from './components/router/admin/layout';
-import AdminPage from './components/router/admin/(admin)/page';
+import AdminPage from './components/router/admin/page';
 
 const router = createBrowserRouter(
     [

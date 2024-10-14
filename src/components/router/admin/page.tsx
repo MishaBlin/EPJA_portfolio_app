@@ -1,11 +1,11 @@
 import React from 'react';
 import { useOutletContext } from 'react-router-dom';
-import Connect from '../../root/(about)/connect';
-import Stars from '../../root/(about)/stars';
-import Location from '../../root/(about)/location';
-import TechStack from '../../root/(about)/tech-stack';
-import Nickname from './nickname-card';
-import Projects from '../../root/(projects)/projects';
+import Connect from '../root/(about)/connect';
+import Stars from '../root/(about)/stars';
+import Location from '../root/(about)/location';
+import TechStack from '../root/(about)/tech-stack';
+import Nickname from './(admin)/nickname-card';
+import Projects from '../root/(projects)/projects';
 
 type OutletContextType = {
     nickname: { name: string; colored: string } | null;

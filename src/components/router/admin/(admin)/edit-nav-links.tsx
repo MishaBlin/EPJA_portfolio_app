@@ -36,7 +36,7 @@ export default function EditNavLinks({ updateLinks }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi('/ms/epja-2024-1/cats/admin/edit/nav-links');
+    } = usePostApi(`${process.env.BACKEND}/admin/edit/nav-links`);
 
     const handleSubmit = async () => {
         const updatedLinks = { navLinks: links };

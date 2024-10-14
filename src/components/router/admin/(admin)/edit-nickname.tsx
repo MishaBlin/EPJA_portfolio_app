@@ -36,7 +36,7 @@ export default function EditNickname({ updateNickname }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi('/ms/epja-2024-1/cats/admin/edit/nickname');
+    } = usePostApi(`${process.env.BACKEND}/admin/edit/nickname`);
 
     const handleSubmit = async () => {
         const updatedName = { name, colored };

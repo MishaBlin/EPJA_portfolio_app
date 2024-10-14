@@ -11,7 +11,10 @@ const verifyToken = (req, res, next) => {
     if (token === process.env.TOKEN) {
         next();
     } else {
-        res.status(403).send({ 'status': 'Failed', 'data': 'Invalid token' });
+        res.status(403).send({
+            'status': 'Failed',
+            'data': `Invalid token. Wanted ${process.env.TOKEN}, got ${token}`
+        });
     }
 };
 
@@ -129,12 +132,15 @@ adminRouter.post('/edit/projects', verifyToken, (req, res) => {
 
     const isValidProject = (project) => {
         return projectFields.every(field => field && field in project);
-    }
+    };
 
     const allProjectsValid = projects.every(project => isValidProject(project));
 
     if (!allProjectsValid) {
-        return res.status(400).send({ 'status': 'Failed', 'data': 'All projects must contain ' + projectFields.join(", ") });
+        return res.status(400).send({
+            'status': 'Failed',
+            'data': 'All projects must contain ' + projectFields.join(', ')
+        });
     }
 
     data.projects = projects;

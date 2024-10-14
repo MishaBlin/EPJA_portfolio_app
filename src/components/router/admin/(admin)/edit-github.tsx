@@ -36,7 +36,7 @@ export default function EditGitHub({ updateGithub }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi('/ms/epja-2024-1/cats/admin/edit/github-repo');
+    } = usePostApi(`${process.env.BACKEND}/admin/edit/github-repo`);
 
     const handleSubmit = async () => {
         const updatedGithub = { github: { repo, author } };
