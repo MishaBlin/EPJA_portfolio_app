@@ -2,7 +2,7 @@ import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 
 export function useGetApi(url: string, fetcher: (...args: any[]) => any) {
-    return useSWR(`/ms/epja-2024-1/cats/get/${url}`, fetcher);
+    return useSWR(`${process.env.BACKEND}/get/${url}`, fetcher);
 }
 
 export function usePostApi(url) {

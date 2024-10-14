@@ -18,30 +18,23 @@ type AuthProps = React.HTMLAttributes<HTMLDivElement>;
 export function UserAuthForm({ className, ...props }: AuthProps) {
     const navigate = useNavigate();
 
-    const [isLoading, setIsLoading] = React.useState(false);
-
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     async function onSubmit(event: React.SyntheticEvent) {
         event.preventDefault();
-        setIsLoading(true);
 
-        setTimeout(async () => {
-            await axios
-                .post(`${process.env.BACKEND}/auth/login`, {
-                    email: email,
-                    password: password,
-                })
-                .then((res) => {
-                    localStorage.setItem('cats_token', res.data.data);
-                })
-                .then(() => {
-                    navigate('/admin');
-                });
-
-            setIsLoading(false);
-        }, 3000);
+        await axios
+            .post(`${process.env.BACKEND}/auth/login`, {
+                email: email,
+                password: password,
+            })
+            .then((res) => {
+                localStorage.setItem('cats_token', res.data.data);
+            })
+            .then(() => {
+                navigate('/admin');
+            });
     }
 
     return (
@@ -59,7 +52,6 @@ export function UserAuthForm({ className, ...props }: AuthProps) {
                             autoCapitalize="none"
                             autoComplete="email"
                             autoCorrect="off"
-                            disabled={isLoading}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -70,17 +62,11 @@ export function UserAuthForm({ className, ...props }: AuthProps) {
                             type="password"
                             autoCapitalize="none"
                             autoCorrect="off"
-                            disabled={isLoading}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <Button disabled={isLoading}>
-                        {isLoading && (
-                            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                        )}
-                        Sign In
-                    </Button>
+                    <Button>Sign In</Button>
                 </div>
             </form>
             <div className="relative">
@@ -98,14 +84,10 @@ export function UserAuthForm({ className, ...props }: AuthProps) {
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <Button variant="outline" type="button">
-                            {isLoading ? (
-                                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                            ) : (
-                                <Icons.gitHub
-                                    className="mr-2 h-4 w-4"
-                                    color="foreground"
-                                />
-                            )}{' '}
+                            <Icons.gitHub
+                                className="mr-2 h-4 w-4"
+                                color="foreground"
+                            />{' '}
                             GitHub
                         </Button>
                     </TooltipTrigger>
