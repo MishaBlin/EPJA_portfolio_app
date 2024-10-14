@@ -33,7 +33,7 @@ export default function EditTechStack({ updateTechStack }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi('/api/cats/admin/edit/tech-stack');
+    } = usePostApi('/ms/epja-2024-1/cats/admin/edit/tech-stack');
 
     const handleSubmit = async () => {
         const updatedStack = { techStack: stack };

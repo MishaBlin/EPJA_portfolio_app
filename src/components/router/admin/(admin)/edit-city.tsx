@@ -26,7 +26,7 @@ export default function EditCity({ updateLocation }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi('/api/cats/admin/edit/city');
+    } = usePostApi('/ms/epja-2024-1/cats/admin/edit/city');
 
     useEffect(() => {
         if (city) {
