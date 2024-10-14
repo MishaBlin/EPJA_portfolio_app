@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
-import getConfigValue from '@brojs/cli';
+import { getConfigValue } from '@brojs/cli';
 
 export function useGetApi(url: string, fetcher: (...args: any[]) => any) {
     return useSWR(`${getConfigValue('cats.backend')}/get/${url}`, fetcher);
