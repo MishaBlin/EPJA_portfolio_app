@@ -13,6 +13,7 @@ import { Input } from '../../../ui/input';
 import { Label } from '../../../ui/label';
 import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
+import { getConfigValue } from '@brojs/cli';
 
 export default function EditCity({ updateLocation }) {
     const [open, setOpen] = React.useState(false);
@@ -26,7 +27,7 @@ export default function EditCity({ updateLocation }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi(`${process.env.BACKEND}/admin/edit/city`);
+    } = usePostApi(`${getConfigValue('cats.backend')}/admin/edit/city`);
 
     useEffect(() => {
         if (city) {

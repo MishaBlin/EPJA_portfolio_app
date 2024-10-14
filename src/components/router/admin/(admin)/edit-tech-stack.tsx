@@ -12,6 +12,7 @@ import { Button } from '../../../ui/button';
 import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
 import { Input } from '../../../ui/input';
+import { getConfigValue } from '@brojs/cli';
 
 export default function EditTechStack({ updateTechStack }) {
     const [open, setOpen] = React.useState(false);
@@ -33,7 +34,7 @@ export default function EditTechStack({ updateTechStack }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi(`${process.env.BACKEND}/admin/edit/tech-stack`);
+    } = usePostApi(`${getConfigValue('cats.backend')}/admin/edit/tech-stack`);
 
     const handleSubmit = async () => {
         const updatedStack = { techStack: stack };

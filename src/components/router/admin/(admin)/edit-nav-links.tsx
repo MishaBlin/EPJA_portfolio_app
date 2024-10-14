@@ -13,6 +13,7 @@ import { Input } from '../../../ui/input';
 import { Label } from '../../../ui/label';
 import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
+import { getConfigValue } from '@brojs/cli';
 
 export default function EditNavLinks({ updateLinks }) {
     const [open, setOpen] = React.useState(false);
@@ -36,7 +37,7 @@ export default function EditNavLinks({ updateLinks }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi(`${process.env.BACKEND}/admin/edit/nav-links`);
+    } = usePostApi(`${getConfigValue('cats.backend')}/admin/edit/nav-links`);
 
     const handleSubmit = async () => {
         const updatedLinks = { navLinks: links };

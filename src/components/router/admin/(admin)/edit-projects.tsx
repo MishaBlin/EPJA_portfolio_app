@@ -13,6 +13,7 @@ import { Input } from '../../../ui/input';
 import { Label } from '../../../ui/label';
 import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
+import { getConfigValue } from '@brojs/cli';
 
 const generateIdFromTitle = (title) => {
     return title
@@ -47,7 +48,7 @@ export default function EditProjects({ updateProjects }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi(`${process.env.BACKEND}/admin/edit/projects`);
+    } = usePostApi(`${getConfigValue('cats.backend')}/admin/edit/projects`);
 
     const handleSubmit = async () => {
         const transformedProjects = rawProjects.map((project) => ({

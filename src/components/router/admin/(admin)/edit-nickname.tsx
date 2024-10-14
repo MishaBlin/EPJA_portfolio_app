@@ -13,6 +13,7 @@ import { Input } from '../../../ui/input';
 import { Label } from '../../../ui/label';
 import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
+import { getConfigValue } from '@brojs/cli';
 
 export default function EditNickname({ updateNickname }) {
     const [open, setOpen] = React.useState(false);
@@ -36,7 +37,7 @@ export default function EditNickname({ updateNickname }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi(`${process.env.BACKEND}/admin/edit/nickname`);
+    } = usePostApi(`${getConfigValue('cats.backend')}/admin/edit/nickname`);
 
     const handleSubmit = async () => {
         const updatedName = { name, colored };

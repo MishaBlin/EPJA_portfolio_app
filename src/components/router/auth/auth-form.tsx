@@ -12,6 +12,7 @@ import {
 } from '../../ui/tooltip';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { getConfigValue } from '@brojs/cli';
 
 type AuthProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -25,7 +26,7 @@ export function UserAuthForm({ className, ...props }: AuthProps) {
         event.preventDefault();
 
         await axios
-            .post(`${process.env.BACKEND}/auth/login`, {
+            .post(`${getConfigValue('cats.backend')}/auth/login`, {
                 email: email,
                 password: password,
             })

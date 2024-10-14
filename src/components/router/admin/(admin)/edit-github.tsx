@@ -13,6 +13,7 @@ import { Input } from '../../../ui/input';
 import { Label } from '../../../ui/label';
 import { useGetApi, usePostApi } from '../../../../lib/api/useApi';
 import { fetcher } from '../../../../lib/api/root';
+import { getConfigValue } from '@brojs/cli';
 
 export default function EditGitHub({ updateGithub }) {
     const [open, setOpen] = React.useState(false);
@@ -36,7 +37,7 @@ export default function EditGitHub({ updateGithub }) {
         postData,
         error: postError,
         isMutating,
-    } = usePostApi(`${process.env.BACKEND}/admin/edit/github-repo`);
+    } = usePostApi(`${getConfigValue('cats.backend')}/admin/edit/github-repo`);
 
     const handleSubmit = async () => {
         const updatedGithub = { github: { repo, author } };

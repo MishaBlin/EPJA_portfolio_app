@@ -1,5 +1,4 @@
 const pkg = require('./package');
-const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     apiPath: 'stubs/api',
@@ -7,9 +6,6 @@ module.exports = {
         output: {
             publicPath: `/static/${pkg.name}/${process.env.VERSION || pkg.version}/`
         },
-        plugins: [
-            new Dotenv()
-        ],
         module: {
             rules: [
                 {
@@ -25,7 +21,7 @@ module.exports = {
                         }
                     ]
                 }
-            ],
+            ]
 
         }
     },
@@ -39,7 +35,6 @@ module.exports = {
         }
     },
     config: {
-        'cats.api': '/api',
-        'cats.backend': process.env.BACKEND
+        'cats.backend': 'http://localhost:8099/api/cats'
     }
 };
