@@ -1,4 +1,5 @@
 const pkg = require('./package');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     apiPath: 'stubs/api',
@@ -6,6 +7,9 @@ module.exports = {
         output: {
             publicPath: `/static/${pkg.name}/${process.env.VERSION || pkg.version}/`
         },
+        plugins: [
+            new Dotenv()
+        ],
         module: {
             rules: [
                 {
@@ -21,7 +25,8 @@ module.exports = {
                         }
                     ]
                 }
-            ]
+            ],
+
         }
     },
     /* use https://kc.admin.inno-js.ru/ to create config, navigations and features */
